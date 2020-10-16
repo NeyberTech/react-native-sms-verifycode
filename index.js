@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   AppState,
   Platform,
+  Dimensions
 } from 'react-native';
 
 import CodeView from './component/CodeView';
@@ -322,9 +323,11 @@ class VerifyCode extends Component {
       newCodeViewWidth = 2 * gapWidth;
     }
 
+    let styles_container = [styles.container, { width: getScreenWidth() }]
+
     return (
       <TouchableOpacity
-        style={styles.container}
+        style={styles_container}
         activeOpacity={1}
         onPressIn={() => {
           if (!this.keyboardShow) {
