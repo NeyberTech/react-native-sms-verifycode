@@ -73,6 +73,8 @@ const CodeView = (props) => {
     secureTextEntry,
     coverStyle,
     coverRadius,
+
+    calcGapWidth = (gapWidth, index)=>gapWidth,
   } = props;
 
   const foucsedIndex = codeArray.filter(item => item !== '').length;
@@ -102,7 +104,7 @@ const CodeView = (props) => {
     >
       {
         codeArray.map((code, index) => {
-          const marginLeft = index === 0 ? 0 : gapWidth;
+          const marginLeft = calcGapWidth(index === 0 ? 0 : gapWidth, index);
           const marginRight = 0;
 
           // code view style

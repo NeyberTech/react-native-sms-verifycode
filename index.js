@@ -295,35 +295,39 @@ class VerifyCode extends Component {
       codeFontSize,
       codeColor,
       secureTextEntry,
+
+      width,
+      calcGapWidth = (gapWidth, index)=>gapWidth,
     } = this.props;
     let gapWidth = 0;
     let newCodeViewWidth = 0;
+    let outerWidth = width || getScreenWidth();
     if (codeViewWidth) {
       gapWidth = (
-        getScreenWidth()
+        outerWidth
         - (containerPaddingLeft || containerPaddingHorizontal) - (containerPaddingRight || containerPaddingHorizontal)
         - (verifyCodeLength * codeViewWidth)
       ) / (verifyCodeLength - 1);
       // if (containerPaddingHorizontal) {
 
       // } else {
-      //   gapWidth = (getScreenWidth() - (verifyCodeLength * codeViewWidth)) / (verifyCodeLength + 1);
+      //   gapWidth = (outerWidth - (verifyCodeLength * codeViewWidth)) / (verifyCodeLength + 1);
       // }
       newCodeViewWidth = codeViewWidth;
     } else {
       gapWidth = (
-        getScreenWidth()
+        outerWidth
         - (containerPaddingLeft || containerPaddingHorizontal) - (containerPaddingRight || containerPaddingHorizontal)
       ) / ((3 * verifyCodeLength) - 1);
       // if (containerPaddingHorizontal) {
 
       // } else {
-      //   gapWidth = getScreenWidth() / ((3 * verifyCodeLength) + 1);
+      //   gapWidth = outerWidth / ((3 * verifyCodeLength) + 1);
       // }
       newCodeViewWidth = 2 * gapWidth;
     }
 
-    let styles_container = [styles.container, { width: getScreenWidth() }]
+    let styles_container = [styles.container, { width: outerWidth }]
 
     return (
       <TouchableOpacity
@@ -361,6 +365,7 @@ class VerifyCode extends Component {
         <CodeView
           focused={focused}
           gapWidth={gapWidth}
+          calcGapWidth={calcGapWidth}
           codeArray={this.state.codeArray}
           coverBGColorList={this.state.coverBGColorList}
           verifyCodeLength={verifyCodeLength}
