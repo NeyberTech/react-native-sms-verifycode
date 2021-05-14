@@ -272,6 +272,7 @@ class VerifyCode extends Component {
     const {
       autoFocus,
       verifyCodeLength,
+      keyboardType,
 
       containerStyle,
       containerPaddingVertical,
@@ -353,7 +354,7 @@ class VerifyCode extends Component {
           }}
           autoFocus={autoFocus}
           maxLength={verifyCodeLength}
-          keyboardType="numeric"
+          keyboardType={keyboardType || "numeric"}
           style={styles.hiddenTextInput}
           value={this.state.text}
           onChangeText={(text) => {
