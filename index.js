@@ -112,7 +112,7 @@ class VerifyCode extends Component {
       onInputChangeText,
     } = this.props;
     // console.log('text:', text)
-    const codeLength = text.length;
+    let codeLength = text.length;
     if (codeLength === 0) {
       const codeArray = getCodeArray([], verifyCodeLength);
       this.curCodeLength = 0;
@@ -125,39 +125,38 @@ class VerifyCode extends Component {
     } else {
       let codeArray = [];
       codeArray = text.split('');
+      // 过滤非数字
+      codeArray = codeArray.filter(code => code && !isNaN(code));
+      const newText = codeArray.join('');
+      if (text !== newText) {
+        this.curCodeLength = this.curCodeLength - text.length + newText.length;
+        text = newText;
+        codeLength = newText.length;
+      }
       // add
       if (codeLength > this.curCodeLength) {
-        if (isNaN(codeArray[codeLength - 1]) || codeArray[codeLength - 1] === ' ') {
-          // console.log('1 codeArray:', codeArray);
-          codeArray = codeArray.filter(code => !isNaN(code) && code !== ' ');
-          // console.log('2 codeArray:', codeArray)
-          const reducer = (accumulator, currentValue) => `${accumulator}${currentValue}`;
-          const codeText = codeArray.length > 0 ? codeArray.reduce(reducer) : '';
-          this.showAlert(codeText, codeArray, codeLength);
-        } else {
-          if (codeLength === verifyCodeLength) {
-            if (this.props.onInputCompleted) { this.props.onInputCompleted(text); }
-          }
-          codeArray = getCodeArray(codeArray, verifyCodeLength);
-          this.curCodeLength = codeLength;
-          onInputChangeText && onInputChangeText(text);
-          this.setState(
-            {
-              text,
-              codeArray,
-              coverBGColorList: this.getBeforeCoverBGColorList(codeArray, verifyCodeLength),
-            },
-            () => {
-              this.timeout = setTimeout(
-                () => this.setState({
-                  codeArray,
-                  coverBGColorList: this.getCoverBGColorList(codeArray, verifyCodeLength),
-                }),
-                500,
-              );
-            },
-          );
+        if (codeLength === verifyCodeLength) {
+          if (this.props.onInputCompleted) { this.props.onInputCompleted(text); }
         }
+        codeArray = getCodeArray(codeArray, verifyCodeLength);
+        this.curCodeLength = codeLength;
+        onInputChangeText && onInputChangeText(text);
+        this.setState(
+          {
+            text,
+            codeArray,
+            coverBGColorList: this.getBeforeCoverBGColorList(codeArray, verifyCodeLength),
+          },
+          () => {
+            this.timeout = setTimeout(
+              () => this.setState({
+                codeArray,
+                coverBGColorList: this.getCoverBGColorList(codeArray, verifyCodeLength),
+              }),
+              500,
+            );
+          },
+        );
       } else { // minus
         codeArray = getCodeArray(codeArray, verifyCodeLength);
         this.curCodeLength = codeLength;
