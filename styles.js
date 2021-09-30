@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     width: 1,
     height: 1,
     backgroundColor: 'transparent',
+    color: 'transparent'
   },
 });
 
