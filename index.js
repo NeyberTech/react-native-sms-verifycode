@@ -62,13 +62,15 @@ class VerifyCode extends Component {
       'keyboardDidHide',
       this.keyboardDidHide.bind(this),
     );
-    AppState.addEventListener('change', this.onAppStateChange);
+    this.appStateChangeEventListener = AppState.addEventListener('change', this.onAppStateChange);
   }
 
   componentWillUnmount() {
     this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove();
-    AppState.removeEventListener('change', this.onAppStateChange);
+    if (this.appStateChangeEventListener?.remove) {
+      this.appStateChangeEventListener.remove();
+    }
     if(this.timeout) {
       clearTimeout(this.timeout);
     }
