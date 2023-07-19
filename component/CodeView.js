@@ -11,6 +11,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import { Colors, Constants, getScreenWidth } from '../util';
 
@@ -74,6 +75,8 @@ const CodeView = (props) => {
     coverStyle,
     coverRadius,
 
+    onPress,
+
     calcGapWidth = (gapWidth, index)=>gapWidth,
   } = props;
 
@@ -88,7 +91,8 @@ const CodeView = (props) => {
   const cBackgroundColor = containerBackgroundColor ? { backgroundColor: containerBackgroundColor } : {};
 
   return (
-    <View style={[
+    <TouchableOpacity onPress={onPress} >
+      <View style={[
       styles.defaultContainerStyle,
       containerStyle,
       {
@@ -174,6 +178,7 @@ const CodeView = (props) => {
         })
       }
     </View>
+    </TouchableOpacity>
   );
 };
 

@@ -365,6 +365,11 @@ class VerifyCode extends Component {
           }}
         />
         <CodeView
+          onPress={() => {
+            if (this.textInput) {
+              this.textInput.focus();
+            }
+          }}
           focused={focused}
           gapWidth={gapWidth}
           calcGapWidth={calcGapWidth}
