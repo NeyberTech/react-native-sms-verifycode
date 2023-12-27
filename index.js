@@ -41,6 +41,8 @@ class VerifyCode extends Component {
       if (str) return true;
       return false;
     });
+    // 当前输入的code个数
+    this.curCodeLength = codes.length;
     const codeArray = getCodeArray(codes, verifyCodeLength);
     const reducer = (accumulator, currentValue) => `${accumulator}${currentValue}`;
     this.state = {
@@ -49,8 +51,6 @@ class VerifyCode extends Component {
       coverBGColorList: this.getCoverBGColorList(codeArray, verifyCodeLength),
       focused: autoFocus,
     };
-    // 当前输入的code个数
-    this.curCodeLength = codes.length;
   }
 
   componentDidMount() {
@@ -84,6 +84,8 @@ class VerifyCode extends Component {
         if (str) return true;
         return false;
       });
+      // 当前输入的code个数
+      this.curCodeLength = codes.length;
       const codeArray = getCodeArray(codes, this.props.verifyCodeLength);
       const reducer = (accumulator, currentValue) => `${accumulator}${currentValue}`;
       this.setState({
@@ -92,8 +94,6 @@ class VerifyCode extends Component {
         coverBGColorList: this.getCoverBGColorList(codeArray, this.props.verifyCodeLength),
         focused: this.props.autoFocus,
       })
-      // 当前输入的code个数
-      this.curCodeLength = codes.length;
     }
   }
 
