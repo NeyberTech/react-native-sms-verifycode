@@ -289,6 +289,7 @@ class VerifyCode extends Component {
       codeViewHeight,
       codeViewBackgroundColor,
       codeViewBorderWidth,
+      focusedCodeViewBorderWidth,
       codeViewBorderColor,
       codeViewBorderRadius,
       focusedCodeViewBorderColor,
@@ -390,6 +391,7 @@ class VerifyCode extends Component {
           codeViewWidth={newCodeViewWidth}
           codeViewHeight={codeViewHeight}
           codeViewBorderWidth={codeViewBorderWidth}
+          focusedCodeViewBorderWidth={focusedCodeViewBorderWidth}
           codeViewBorderRadius={codeViewBorderRadius}
           codeViewBackgroundColor={codeViewBackgroundColor}
           codeStyle={codeStyle}

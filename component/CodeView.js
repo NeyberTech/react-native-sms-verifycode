@@ -63,6 +63,7 @@ const CodeView = (props) => {
     codeViewHeight,
     codeViewBackgroundColor,
     codeViewBorderWidth,
+    focusedCodeViewBorderWidth,
     codeViewBorderColor,
     codeViewBorderRadius,
     focusedCodeViewBorderColor,
@@ -116,10 +117,12 @@ const CodeView = (props) => {
           const viewHight = codeViewHeight ? { height: codeViewHeight } : { height: codeViewWidth };
           const viewBackgroundColor = codeViewBackgroundColor ? { backgroundColor: codeViewBackgroundColor } : {};
           const viewBorderWidth = codeViewBorderWidth ? { borderWidth: codeViewBorderWidth } : {};
+          const focusedViewBorderWidth = focusedCodeViewBorderWidth ? { borderWidth: focusedCodeViewBorderWidth } : {};
           const viewBorderRadius = codeViewBorderRadius ? { borderRadius: codeViewBorderRadius } : {};
           const viewBorderColor = codeViewBorderColor ? { borderColor: codeViewBorderColor } : {};
           const focusedViewBorderColor = focusedCodeViewBorderColor ? { borderColor: focusedCodeViewBorderColor } : {};
           const vbColor = (foucsedIndex === index && focused) ? focusedViewBorderColor : viewBorderColor;
+          const vbBorderWidth = (foucsedIndex === index && focused) ? focusedViewBorderWidth : viewBorderWidth;
 
           // code style
           const cFontSize = codeFontSize ? { fontSize: codeFontSize } : {};
@@ -145,6 +148,7 @@ const CodeView = (props) => {
                       ...viewBorderWidth,
                       ...viewBorderRadius,
                       ...vbColor,
+                      ...vbBorderWidth,
                     },
                   ]}
                 >
@@ -207,6 +211,7 @@ CodeView.propTypes = {
   codeViewWidth: PropTypes.number.isRequired,
   codeViewHeight: PropTypes.number,
   codeViewBorderWidth: PropTypes.number,
+  focusedCodeViewBorderWidth: PropTypes.number,
   codeViewBorderRadius: PropTypes.number,
   codeViewBackgroundColor: PropTypes.string,
 
@@ -239,6 +244,7 @@ CodeView.defaultProps = {
   focusedCodeViewBorderColor: Colors.focusedCodeViewBorderColor,
   codeViewHeight: null,
   codeViewBorderWidth: null,
+  focusedCodeViewBorderWidth: null,
   codeViewBorderRadius: null,
   codeViewBackgroundColor: null,
 

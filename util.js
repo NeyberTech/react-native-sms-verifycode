@@ -23,6 +23,7 @@ export const Constants = {
   verifyCodeLength: 5,
   codeViewWidth: getScreenWidth() / ((3 * 5) + 1),
   codeViewBorderWidth: 1.5,
+  focusedCodeViewBorderWidth: 1.5,
   codeViewBorderRadius: 5,
   codeFontSize: 16,
   secureTextEntry: false,
