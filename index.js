@@ -369,6 +369,10 @@ class VerifyCode extends Component {
           onPress={() => {
             if (this.textInput) {
               this.textInput.focus();
+              if (Platform.OS == 'android' && !focused) {
+                this.textInput.blur();
+                this.textInput.focus();
+              }
             }
           }}
           focused={focused}
