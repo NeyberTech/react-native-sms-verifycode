@@ -209,7 +209,6 @@ class VerifyCode extends Component {
   }
 
   keyboardDidHide() {
-    this.blur();
     // this.TextInputFocused = false;
     this.keyboardShow = false;
     if (this.state.focused) {
